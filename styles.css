@@ -3,7 +3,7 @@
   --surface: #ffffff;
   --surface-soft: #e8f4f2;
   --text: #183437;
-  --muted: #4f6a6d;
+  --muted: #2f4e52;
   --brand: #0b8f88;
   --brand-dark: #0a6e6a;
   --highlight: #f2b56b;
@@ -215,13 +215,13 @@ a {
 .btn-secondary {
   border-color: var(--brand);
   color: var(--brand-dark);
-  background: #ffffff;
+  background: #f7fffd;
 }
 
 .accent .btn-secondary {
-  border-color: #8bd4cc;
-  color: #fff;
-  background: transparent;
+  border-color: #b8efe8;
+  color: #083f45;
+  background: #d9f8f3;
 }
 
 .section {
@@ -248,26 +248,6 @@ a {
 .card-grid.two,
 .split.contact-layout {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.1rem;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.stat-card h3 {
-  font-size: 2rem;
-  color: var(--brand-dark);
 }
 
 .accent {
@@ -364,10 +344,6 @@ a {
   margin-bottom: 0.7rem;
 }
 
-.contact-map-link {
-  margin-top: 0.7rem;
-}
-
 .map-card iframe {
   width: 100%;
   min-height: 320px;
@@ -423,8 +399,7 @@ a {
   .card-grid.two,
   .gallery-grid,
   .split,
-  .split.contact-layout,
-  .stats-grid {
+  .split.contact-layout {
     grid-template-columns: 1fr;
   }
 

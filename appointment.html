@@ -39,12 +39,14 @@
 
       <section class="section">
         <div class="container narrow">
-          <form class="card form" data-message="Appointment request submitted successfully.">
+          <form class="card form" name="appointment" method="POST" action="/appointment-success.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="appointment" />
+            <input type="hidden" name="bot-field" />
             <label for="patient-name">Patient Name</label>
-            <input id="patient-name" name="patient-name" type="text" required />
+            <input id="patient-name" name="patient_name" type="text" required />
 
             <label for="patient-phone">Phone Number</label>
-            <input id="patient-phone" name="patient-phone" type="tel" required />
+            <input id="patient-phone" name="patient_phone" type="tel" required />
 
             <label for="department">Department</label>
             <select id="department" name="department" required>
@@ -57,7 +59,7 @@
             </select>
 
             <label for="date">Preferred Date</label>
-            <input id="date" name="date" type="date" required />
+            <input id="date" name="preferred_date" type="date" required />
 
             <label for="notes">Additional Notes</label>
             <textarea id="notes" name="notes" rows="4"></textarea>

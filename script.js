@@ -9,6 +9,10 @@ if (toggleButton && nav) {
 
 document.querySelectorAll('form[data-message]').forEach((form) => {
   form.addEventListener('submit', (event) => {
+    if (form.hasAttribute('data-netlify')) {
+      return;
+    }
+
     event.preventDefault();
     const message = form.getAttribute('data-message') || 'Submitted successfully.';
     alert(message);

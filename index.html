@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarePoint Hospital | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">+</span>
+          <span>CarePoint Hospital</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+        <nav class="site-nav">
+          <a class="active" href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="appointment.html">Appointment</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Trusted Care, Every Day</p>
+            <h1>Your Health Is Our Highest Priority</h1>
+            <p>
+              CarePoint Hospital provides compassionate, modern, and affordable healthcare
+              services for individuals and families.
+            </p>
+            <div class="button-row">
+              <a class="btn btn-primary" href="appointment.html">Book Appointment</a>
+              <a class="btn btn-secondary" href="services.html">View Services</a>
+            </div>
+          </div>
+
+          <div class="hero-visual card lift-on-hover">
+            <div class="hero-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80"
+                alt="Hospital team supporting a patient"
+              />
+              <button class="photo-swap" type="button">Change Photo</button>
+            </div>
+            <div class="hero-card-mini">
+              <h3>24/7 Emergency Support</h3>
+              <p>Experienced doctors and staff ready to support urgent care needs at all hours.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="stats-grid">
+            <article class="stat-card">
+              <h3><span class="counter" data-target="35">0</span>+</h3>
+              <p>Specialist Doctors</p>
+            </article>
+            <article class="stat-card">
+              <h3><span class="counter" data-target="12000">0</span>+</h3>
+              <p>Patients Treated</p>
+            </article>
+            <article class="stat-card">
+              <h3><span class="counter" data-target="18">0</span>+</h3>
+              <p>Medical Departments</p>
+            </article>
+            <article class="stat-card">
+              <h3><span class="counter" data-target="24">0</span>/7</h3>
+              <p>Emergency Response</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Why Choose Us</p>
+            <h2>Healthcare Built on Trust</h2>
+          </div>
+          <div class="card-grid three">
+            <article class="card lift-on-hover">
+              <h3>Qualified Doctors</h3>
+              <p>Our team includes experienced specialists across major medical departments.</p>
+            </article>
+            <article class="card lift-on-hover">
+              <h3>Patient-Centered Care</h3>
+              <p>We listen first, then design treatment plans tailored to each patient.</p>
+            </article>
+            <article class="card lift-on-hover">
+              <h3>Modern Facilities</h3>
+              <p>Well-equipped operation theatres, imaging labs, and recovery units.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section accent">
+        <div class="container split">
+          <div>
+            <p class="eyebrow">Patient Voices</p>
+            <h2>What Families Say</h2>
+            <p id="testimonialText">
+              "The staff was incredibly kind and the doctors explained every step clearly."
+            </p>
+            <p class="testimonial-author" id="testimonialAuthor">- Priya M.</p>
+          </div>
+          <div class="button-row">
+            <button class="btn btn-secondary testimonial-btn" type="button" data-direction="prev">Previous</button>
+            <button class="btn btn-secondary testimonial-btn" type="button" data-direction="next">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Common Questions</p>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div class="faq-list">
+            <article class="faq-item">
+              <button class="faq-question" type="button">Do you offer cashless insurance support?</button>
+              <div class="faq-answer"><p>Yes, we support major insurance providers. Please contact our billing desk for partner details.</p></div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button">How quickly can I get an appointment?</button>
+              <div class="faq-answer"><p>General consultations are usually available the same day or within 24 hours.</p></div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button">Is emergency care available at night?</button>
+              <div class="faq-answer"><p>Yes, our emergency team and critical care unit are available 24/7.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section accent">
+        <div class="container split">
+          <div>
+            <p class="eyebrow">Quick Contact</p>
+            <h2>Need Immediate Guidance?</h2>
+            <p>
+              Reach out to our support desk for emergency information, appointment help,
+              and specialist availability.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="contact.html">Contact Hospital</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 CarePoint Hospital. All rights reserved.</p>
+        <p>Serving patients with dignity, safety, and excellence.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

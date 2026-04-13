@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarePoint Hospital | Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html"><span class="brand-mark">+</span><span>CarePoint Hospital</span></a>
+        <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="appointment.html">Appointment</a>
+          <a class="active" href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Contact Us</p>
+          <h1>We Are Here to Help</h1>
+          <p>Reach us for emergency guidance, appointments, or general information.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split contact-layout">
+          <div class="card">
+            <h3>Hospital Information</h3>
+            <p><strong>Address:</strong> 123 Health Avenue, Your City</p>
+            <p><strong>Phone:</strong> +91 90000 00000</p>
+            <p><strong>Email:</strong> contact@carepointhospital.com</p>
+            <p><strong>Emergency:</strong> 24/7 available</p>
+          </div>
+          <form class="card form" data-message="Thank you! We have received your message.">
+            <h3>Send a Message</h3>
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" required />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 CarePoint Hospital. All rights reserved.</p>
+        <p>Serving patients with dignity, safety, and excellence.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

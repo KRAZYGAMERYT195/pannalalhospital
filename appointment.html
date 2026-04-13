@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarePoint Hospital | Appointment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html"><span class="brand-mark">+</span><span>CarePoint Hospital</span></a>
+        <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a class="active" href="appointment.html">Appointment</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Make Appointment</p>
+          <h1>Book Your Visit in Minutes</h1>
+          <p>Fill in your details and our team will confirm your appointment shortly.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container narrow">
+          <form class="card form" data-message="Appointment request submitted successfully.">
+            <label for="patient-name">Patient Name</label>
+            <input id="patient-name" name="patient-name" type="text" required />
+
+            <label for="patient-phone">Phone Number</label>
+            <input id="patient-phone" name="patient-phone" type="tel" required />
+
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+              <option value="">Select Department</option>
+              <option>General Medicine</option>
+              <option>Cardiology</option>
+              <option>Pediatrics</option>
+              <option>Orthopedics</option>
+              <option>Emergency Care</option>
+            </select>
+
+            <label for="date">Preferred Date</label>
+            <input id="date" name="date" type="date" required />
+
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="4"></textarea>
+
+            <button type="submit" class="btn btn-primary">Request Appointment</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <p>© 2026 CarePoint Hospital. All rights reserved.</p>
+        <p>Serving patients with dignity, safety, and excellence.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

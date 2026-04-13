@@ -360,6 +360,21 @@ a {
   border-color: var(--brand);
 }
 
+.contact-card p {
+  margin-bottom: 0.7rem;
+}
+
+.contact-map-link {
+  margin-top: 0.7rem;
+}
+
+.map-card iframe {
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  border-radius: 14px;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

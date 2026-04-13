@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CarePoint Hospital | Contact</title>
+    <title>Pannalal Hospital | Contact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +15,7 @@
   <body>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="index.html"><span class="brand-mark">+</span><span>CarePoint Hospital</span></a>
+        <a class="brand" href="index.html"><span class="brand-mark">+</span><span>Pannalal Hospital</span></a>
         <button class="nav-toggle" aria-label="Toggle navigation">Menu</button>
         <nav class="site-nav">
           <a href="index.html">Home</a>
@@ -39,30 +39,50 @@
 
       <section class="section">
         <div class="container split contact-layout">
-          <div class="card">
+          <div class="card contact-card">
             <h3>Hospital Information</h3>
             <p><strong>Address:</strong> 123 Health Avenue, Your City</p>
             <p><strong>Phone:</strong> +91 90000 00000</p>
-            <p><strong>Email:</strong> contact@carepointhospital.com</p>
+            <p><strong>Email:</strong> contact@pannalalhospital.com</p>
             <p><strong>Emergency:</strong> 24/7 available</p>
+            <a class="btn btn-secondary contact-map-link" href="https://maps.google.com/?q=Pannalal+Hospital" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
           </div>
-          <form class="card form" data-message="Thank you! We have received your message.">
+          <form class="card form" name="contact" method="POST" action="/contact-success.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
             <h3>Send a Message</h3>
             <label for="name">Full Name</label>
             <input id="name" name="name" type="text" required />
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" required />
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required />
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="4" required></textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="card map-card">
+            <h3>Find Us on Google Maps</h3>
+            <p>Patients and visitors can use this map to quickly locate Pannalal Hospital.</p>
+            <iframe
+              title="Pannalal Hospital Location on Google Maps"
+              src="https://www.google.com/maps?q=Pannalal+Hospital&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-wrap">
-        <p>© 2026 CarePoint Hospital. All rights reserved.</p>
+        <p>© 2026 Pannalal Hospital. All rights reserved.</p>
         <p>Serving patients with dignity, safety, and excellence.</p>
       </div>
     </footer>

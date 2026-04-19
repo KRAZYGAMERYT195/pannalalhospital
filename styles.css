@@ -260,6 +260,12 @@ a {
   color: #fff;
 }
 
+/* Keep content readable inside white cards placed within accent sections */
+.accent .card h3,
+.accent .card p {
+  color: var(--text);
+}
+
 .testimonial-author {
   font-weight: 700;
   opacity: 0.95;

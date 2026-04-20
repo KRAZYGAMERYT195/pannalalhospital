@@ -185,6 +185,13 @@ a {
   box-shadow: var(--shadow);
 }
 
+/* Card titles use a cleaner face to avoid decorative serif wobble on some glyphs */
+.card h3 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
 .button-row {
   display: flex;
   gap: 0.8rem;

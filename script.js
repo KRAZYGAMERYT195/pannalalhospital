@@ -167,7 +167,8 @@ const createChatbot = () => {
   widget.className = 'chatbot-widget';
   widget.innerHTML = `
     <button class="chatbot-toggle" type="button" aria-label="Open hospital assistant" aria-expanded="false">
-      <span>AI</span>
+      <span class="chatbot-icon">+</span>
+      <span class="chatbot-label">Ask Hospital</span>
     </button>
     <div class="chatbot-panel" aria-live="polite">
       <div class="chatbot-head">
@@ -253,53 +254,41 @@ if (document.body) {
   createChatbot();
 }
 
-const createCursorEffects = () => {
+const createInteractiveBackground = () => {
+  const field = document.createElement('div');
+  field.className = 'ambient-care-field';
+  field.setAttribute('aria-hidden', 'true');
+  field.innerHTML = `
+    <div class="field-grid"></div>
+    <div class="field-band field-band-one"></div>
+    <div class="field-band field-band-two"></div>
+    <div class="field-vital"></div>
+  `;
+  document.body.prepend(field);
+
   if (window.matchMedia('(pointer: coarse)').matches) {
     return;
   }
 
-  const glow = document.createElement('div');
-  glow.className = 'cursor-glow';
-  document.body.appendChild(glow);
-
-  let pointerX = window.innerWidth / 2;
-  let pointerY = window.innerHeight / 2;
-  let glowX = pointerX;
-  let glowY = pointerY;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
 
   window.addEventListener('pointermove', (event) => {
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-    document.documentElement.style.setProperty('--cursor-x', `${pointerX}px`);
-    document.documentElement.style.setProperty('--cursor-y', `${pointerY}px`);
+    targetX = (event.clientX / window.innerWidth - 0.5) * 2;
+    targetY = (event.clientY / window.innerHeight - 0.5) * 2;
   });
 
-  const animateGlow = () => {
-    glowX += (pointerX - glowX) * 0.16;
-    glowY += (pointerY - glowY) * 0.16;
-    glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
-    requestAnimationFrame(animateGlow);
+  const animateField = () => {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    document.documentElement.style.setProperty('--field-x', currentX.toFixed(3));
+    document.documentElement.style.setProperty('--field-y', currentY.toFixed(3));
+    requestAnimationFrame(animateField);
   };
 
-  animateGlow();
-
-  document.querySelectorAll('.card, .btn, .hero-photo-wrap').forEach((element) => {
-    element.addEventListener('pointermove', (event) => {
-      const rect = element.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
-      const y = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
-
-      element.style.setProperty('--tilt-x', `${y}deg`);
-      element.style.setProperty('--tilt-y', `${x}deg`);
-      element.classList.add('cursor-tilt');
-    });
-
-    element.addEventListener('pointerleave', () => {
-      element.style.removeProperty('--tilt-x');
-      element.style.removeProperty('--tilt-y');
-      element.classList.remove('cursor-tilt');
-    });
-  });
+  animateField();
 };
 
-createCursorEffects();
+createInteractiveBackground();

@@ -20,7 +20,6 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(480px circle at var(--cursor-x, 50%) var(--cursor-y, 20%), rgba(19, 169, 162, 0.1), transparent 42%),
     radial-gradient(circle at 15% -20%, #cfece7 0%, transparent 50%),
     radial-gradient(circle at 85% -10%, #ffe4c8 0%, transparent 45%),
     var(--bg);
@@ -394,20 +393,100 @@ a {
   box-shadow: 0 18px 44px rgba(11, 63, 70, 0.18);
 }
 
-.cursor-glow {
+.ambient-care-field {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 180px;
-  height: 180px;
+  inset: 0;
   pointer-events: none;
-  z-index: 1;
-  border-radius: 50%;
+  z-index: 0;
+  overflow: hidden;
   background:
-    radial-gradient(circle, rgba(242, 181, 107, 0.22), rgba(19, 169, 162, 0.14) 42%, transparent 70%);
-  filter: blur(8px);
-  opacity: 0.75;
-  mix-blend-mode: multiply;
+    linear-gradient(112deg, rgba(255, 255, 255, 0.72), rgba(220, 246, 242, 0.4)),
+    radial-gradient(circle at calc(14% + (var(--field-x, 0) * 8%)) calc(18% + (var(--field-y, 0) * 6%)), rgba(11, 143, 136, 0.16), transparent 32%),
+    radial-gradient(circle at calc(86% + (var(--field-x, 0) * -8%)) calc(12% + (var(--field-y, 0) * -6%)), rgba(242, 181, 107, 0.2), transparent 34%);
+}
+
+.ambient-care-field::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background:
+    conic-gradient(from 140deg at 50% 50%, transparent, rgba(11, 143, 136, 0.08), transparent 32%),
+    linear-gradient(120deg, transparent 0 42%, rgba(255, 255, 255, 0.5) 48%, transparent 56%);
+  transform: translate3d(calc(var(--field-x, 0) * 24px), calc(var(--field-y, 0) * 24px), 0) rotate(0.001deg);
+  animation: ambient-breathe 14s ease-in-out infinite alternate;
+}
+
+.field-grid {
+  position: absolute;
+  inset: -40px;
+  opacity: 0.36;
+  background-image:
+    linear-gradient(rgba(11, 143, 136, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 143, 136, 0.1) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: radial-gradient(circle at 50% 28%, #000 0%, transparent 68%);
+  transform: translate3d(calc(var(--field-x, 0) * -18px), calc(var(--field-y, 0) * -18px), 0);
+}
+
+.field-band {
+  position: absolute;
+  width: 48vw;
+  min-width: 520px;
+  height: 38vh;
+  border: 1px solid rgba(11, 143, 136, 0.12);
+  border-radius: 999px;
+  filter: blur(0.2px);
+  opacity: 0.42;
+  transform: translate3d(calc(var(--field-x, 0) * 20px), calc(var(--field-y, 0) * 16px), 0) rotate(-12deg);
+}
+
+.field-band-one {
+  left: -12vw;
+  top: 18vh;
+  background: linear-gradient(90deg, rgba(11, 143, 136, 0.08), transparent 62%);
+}
+
+.field-band-two {
+  right: -16vw;
+  bottom: 10vh;
+  background: linear-gradient(90deg, transparent 20%, rgba(242, 181, 107, 0.13));
+  transform: translate3d(calc(var(--field-x, 0) * -24px), calc(var(--field-y, 0) * -18px), 0) rotate(16deg);
+}
+
+.field-vital {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 58%;
+  height: 76px;
+  opacity: 0.18;
+  background:
+    linear-gradient(90deg, transparent 0 4%, #0b8f88 4% 7%, transparent 7% 12%, #0b8f88 12% 16%, transparent 16% 20%, #0b8f88 20% 22%, transparent 22% 100%);
+  clip-path: polygon(0 55%, 7% 55%, 9% 42%, 12% 70%, 16% 18%, 21% 82%, 24% 55%, 100% 55%, 100% 100%, 0 100%);
+  transform: translate3d(calc(var(--field-x, 0) * -10px), calc(var(--field-y, 0) * 8px), 0);
+  animation: vital-drift 9s linear infinite;
+}
+
+@keyframes ambient-breathe {
+  from {
+    opacity: 0.55;
+    transform: translate3d(calc(var(--field-x, 0) * 18px), calc(var(--field-y, 0) * 18px), 0) scale(1);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: translate3d(calc(var(--field-x, 0) * 30px), calc(var(--field-y, 0) * 30px), 0) scale(1.04);
+  }
+}
+
+@keyframes vital-drift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 280px 0;
+  }
 }
 
 .site-header,
@@ -418,18 +497,8 @@ main,
   z-index: 2;
 }
 
-.card,
-.btn,
-.hero-photo-wrap {
-  transform-style: preserve-3d;
-}
-
-.cursor-tilt {
-  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-3px);
-}
-
-.card.cursor-tilt {
-  box-shadow: 0 20px 50px rgba(11, 63, 70, 0.18);
+.site-header {
+  z-index: 20;
 }
 
 .site-footer {
@@ -454,25 +523,42 @@ main,
 }
 
 .chatbot-toggle {
-  width: 58px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 152px;
   height: 58px;
   border: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--brand), #13a9a2);
+  border-radius: 999px;
+  padding: 0 1rem 0 0.72rem;
+  background: linear-gradient(135deg, #083f45, var(--brand));
   color: #fff;
   box-shadow: 0 16px 36px rgba(10, 85, 82, 0.32);
   cursor: pointer;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.96rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-.chatbot-toggle span {
+.chatbot-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(10, 85, 82, 0.38);
+}
+
+.chatbot-icon {
   display: inline-grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.chatbot-label {
+  white-space: nowrap;
 }
 
 .chatbot-panel {
@@ -640,5 +726,24 @@ main,
 
   .chatbot-panel {
     bottom: 66px;
+  }
+
+  .chatbot-toggle {
+    min-width: 132px;
+  }
+
+  .chatbot-label {
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -252,3 +252,54 @@ const createChatbot = () => {
 if (document.body) {
   createChatbot();
 }
+
+const createCursorEffects = () => {
+  if (window.matchMedia('(pointer: coarse)').matches) {
+    return;
+  }
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+
+  let pointerX = window.innerWidth / 2;
+  let pointerY = window.innerHeight / 2;
+  let glowX = pointerX;
+  let glowY = pointerY;
+
+  window.addEventListener('pointermove', (event) => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    document.documentElement.style.setProperty('--cursor-x', `${pointerX}px`);
+    document.documentElement.style.setProperty('--cursor-y', `${pointerY}px`);
+  });
+
+  const animateGlow = () => {
+    glowX += (pointerX - glowX) * 0.16;
+    glowY += (pointerY - glowY) * 0.16;
+    glow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(animateGlow);
+  };
+
+  animateGlow();
+
+  document.querySelectorAll('.card, .btn, .hero-photo-wrap').forEach((element) => {
+    element.addEventListener('pointermove', (event) => {
+      const rect = element.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
+
+      element.style.setProperty('--tilt-x', `${y}deg`);
+      element.style.setProperty('--tilt-y', `${x}deg`);
+      element.classList.add('cursor-tilt');
+    });
+
+    element.addEventListener('pointerleave', () => {
+      element.style.removeProperty('--tilt-x');
+      element.style.removeProperty('--tilt-y');
+      element.classList.remove('cursor-tilt');
+    });
+  });
+};
+
+createCursorEffects();

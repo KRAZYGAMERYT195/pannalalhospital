@@ -129,6 +129,18 @@ if (photoSwapButton && heroImage) {
 
 const chatbotAnswers = [
   {
+    keywords: ['is mri safe', 'mri safe', 'safe mri', 'mri safety', 'can i have mri', 'mri dangerous'],
+    answer: 'For most people, MRI is considered safe because it does not use X-rays or ionising radiation. Before your scan, please tell the radiology team if you have a pacemaker, implanted metal or electronic device, metal fragments, or if you may be pregnant. The team will check your safety carefully and explain the process. If you are worried about enclosed spaces, please mention it when booking so we can support you.'
+  },
+  {
+    keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening'],
+    answer: 'Hello. I am here to help with hospital timings, services, MRI questions, directions, and contact details. What would you like to know?'
+  },
+  {
+    keywords: ['thank', 'thanks'],
+    answer: 'You are welcome. If you need anything else, I can help with timings, services, directions, or contacting the hospital.'
+  },
+  {
     keywords: ['timing', 'time', 'open', 'hours', 'sunday', 'monday'],
     answer: 'Hospital timings are Monday to Saturday, 9:00 AM to 8:00 PM. On Sunday, we are open from 9:00 AM to 3:00 PM. Emergency support is available 24/7.'
   },
@@ -150,7 +162,7 @@ const chatbotAnswers = [
   },
   {
     keywords: ['service', 'services', 'opd', 'medicine', 'doctor', 'nursing', 'drug', 'pharmacy', 'pathology'],
-    answer: 'Services include MRI, CT, X-ray, Ultrasound/USG, experienced OPD, general medicine, radiology, advanced pathology, nursing home facility, drug shop on premises, and 24/7 emergency support.'
+    answer: 'Services include MRI, CT, X-ray, Ultrasound/USG, experienced OPD with cancer specialists, surgeons, and orthopaedic specialists, general medicine, radiology, advanced pathology, nursing home facility, drug shop on premises, and 24/7 emergency support.'
   },
   {
     keywords: ['appointment', 'book', 'visit', 'consultation'],

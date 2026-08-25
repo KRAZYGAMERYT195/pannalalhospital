@@ -671,6 +671,11 @@ main,
   border-bottom-left-radius: 5px;
 }
 
+.chat-message.typing {
+  color: #5d7776;
+  font-style: italic;
+}
+
 .chat-message.user {
   justify-self: end;
   background: var(--brand);

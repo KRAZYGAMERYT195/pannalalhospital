@@ -129,6 +129,10 @@ if (photoSwapButton && heroImage) {
 
 const chatbotAnswers = [
   {
+    keywords: ['is ct safe', 'ct safe', 'safe ct', 'ct scan safe', 'ct dangerous'],
+    answer: 'CT scans use X-rays, so they involve radiation, but the scan is generally considered safe when it is medically needed and performed with the lowest practical dose. Please tell the doctor or radiology team if you may be pregnant, have had a serious reaction to contrast dye, or have kidney problems. They will decide whether contrast is needed and explain the benefits and risks for you.'
+  },
+  {
     keywords: ['is mri safe', 'mri safe', 'safe mri', 'mri safety', 'can i have mri', 'mri dangerous'],
     answer: 'For most people, MRI is considered safe because it does not use X-rays or ionising radiation. Before your scan, please tell the radiology team if you have a pacemaker, implanted metal or electronic device, metal fragments, or if you may be pregnant. The team will check your safety carefully and explain the process. If you are worried about enclosed spaces, please mention it when booking so we can support you.'
   },
@@ -186,20 +190,20 @@ const createChatbot = () => {
       <div class="chatbot-head">
         <div>
           <strong>Hospital Assistant</strong>
-          <span>Ask about timings, services, MRI, or location</span>
+          <span>Ask a question about your visit</span>
         </div>
         <button class="chatbot-close" type="button" aria-label="Close hospital assistant">x</button>
       </div>
       <div class="chatbot-messages">
-        <div class="chat-message bot">Hello, I can help with hospital timings, services, contact details, and directions.</div>
+        <div class="chat-message bot">Hello. I can answer questions about our hospital, services, scans, timings, location, and preparing for a visit. What would you like to know?</div>
       </div>
       <div class="chatbot-chips">
         <button type="button" data-question="What are the timings?">Timings</button>
         <button type="button" data-question="What services are available?">Services</button>
-        <button type="button" data-question="Where is the hospital?">Location</button>
+        <button type="button" data-question="Is a CT scan safe?">Scan safety</button>
       </div>
       <form class="chatbot-form">
-        <input type="text" aria-label="Ask hospital assistant" placeholder="Type your question..." autocomplete="off" />
+        <input type="text" aria-label="Ask hospital assistant" placeholder="Ask anything about your visit..." autocomplete="off" />
         <button type="submit">Send</button>
       </form>
     </div>
@@ -213,6 +217,7 @@ const createChatbot = () => {
   const form = widget.querySelector('.chatbot-form');
   const input = form.querySelector('input');
   const chips = widget.querySelectorAll('.chatbot-chips button');
+  const conversation = [];
 
   const setOpen = (isOpen) => {
     widget.classList.toggle('open', isOpen);
@@ -228,9 +233,10 @@ const createChatbot = () => {
     message.textContent = text;
     messages.appendChild(message);
     messages.scrollTop = messages.scrollHeight;
+    return message;
   };
 
-  const getAnswer = (question) => {
+  const getFallbackAnswer = (question) => {
     const normalized = question.toLowerCase();
     const match = chatbotAnswers.find((item) =>
       item.keywords.some((keyword) => normalized.includes(keyword))
@@ -238,17 +244,49 @@ const createChatbot = () => {
 
     return match
       ? match.answer
-      : 'I can help with timings, services, MRI, CT, X-ray, ultrasound/USG, OPD, contact details, and location. For urgent medical help, please call +91 7078789900.';
+      : 'I can help with hospital services, scan questions, timings, directions, appointments, and contact details. For urgent medical help, please call +91 7078789900.';
   };
 
-  const askQuestion = (question) => {
+  const getAiAnswer = async () => {
+    const response = await fetch('/api/ai-chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: conversation.slice(-12) })
+    });
+
+    if (!response.ok) {
+      throw new Error(`AI request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (!data.response || typeof data.response !== 'string') {
+      throw new Error('AI response was empty');
+    }
+
+    return data.response.trim();
+  };
+
+  const askQuestion = async (question) => {
     const trimmed = question.trim();
     if (!trimmed) {
       return;
     }
 
     addMessage(trimmed, 'user');
-    window.setTimeout(() => addMessage(getAnswer(trimmed), 'bot'), 250);
+    conversation.push({ role: 'user', content: trimmed });
+
+    const typingMessage = addMessage('Thinking...', 'bot typing');
+    let answer;
+
+    try {
+      answer = await getAiAnswer();
+    } catch (error) {
+      answer = getFallbackAnswer(trimmed);
+    }
+
+    typingMessage.remove();
+    conversation.push({ role: 'assistant', content: answer });
+    addMessage(answer, 'bot');
   };
 
   toggle.addEventListener('click', () => setOpen(!widget.classList.contains('open')));

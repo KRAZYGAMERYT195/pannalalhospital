@@ -168,7 +168,7 @@ const createChatbot = () => {
   widget.innerHTML = `
     <button class="chatbot-toggle" type="button" aria-label="Open hospital assistant" aria-expanded="false">
       <span class="chatbot-icon">+</span>
-      <span class="chatbot-label">Ask Hospital</span>
+      <span class="chatbot-label">Need Help?</span>
     </button>
     <div class="chatbot-panel" aria-live="polite">
       <div class="chatbot-head">

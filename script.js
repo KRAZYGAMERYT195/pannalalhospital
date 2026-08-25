@@ -157,8 +157,8 @@ const chatbotAnswers = [
     answer: 'For appointment help, please call +91 7078789900 or send your details through the Contact page. The hospital team can guide you on doctor availability.'
   },
   {
-    keywords: ['founder', 'about', 'history', '1986', 'gyan'],
-    answer: 'Dr. Pannalal Hospital And Nursing Home has served patients since 1986. It was founded by Dr. Gyan Pannalal and built on trust, careful treatment, and patient-first care.'
+    keywords: ['founder', 'about', 'history', '1989', 'gyan'],
+    answer: 'Dr. Pannalal Hospital And Nursing Home has served patients since 1989. It was founded by Dr. Gyan Pannalal and built on trust, careful treatment, and patient-first care.'
   }
 ];
 

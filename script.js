@@ -254,41 +254,35 @@ if (document.body) {
   createChatbot();
 }
 
-const createInteractiveBackground = () => {
-  const field = document.createElement('div');
-  field.className = 'ambient-care-field';
-  field.setAttribute('aria-hidden', 'true');
-  field.innerHTML = `
-    <div class="field-grid"></div>
-    <div class="field-band field-band-one"></div>
-    <div class="field-band field-band-two"></div>
-    <div class="field-vital"></div>
-  `;
-  document.body.prepend(field);
+const storySteps = document.querySelectorAll('.story-step');
+const storyMedia = document.querySelectorAll('.story-media');
+const storyStageTitle = document.getElementById('storyStageTitle');
+const storyTitles = ['A trusted welcome', 'Clear clinical decisions', 'Technology with purpose'];
 
-  if (window.matchMedia('(pointer: coarse)').matches) {
-    return;
+const setStoryStep = (index) => {
+  storySteps.forEach((step, stepIndex) => step.classList.toggle('is-active', stepIndex === index));
+  storyMedia.forEach((media, mediaIndex) => media.classList.toggle('is-active', mediaIndex === index));
+  if (storyStageTitle) {
+    storyStageTitle.textContent = storyTitles[index];
   }
-
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-
-  window.addEventListener('pointermove', (event) => {
-    targetX = (event.clientX / window.innerWidth - 0.5) * 2;
-    targetY = (event.clientY / window.innerHeight - 0.5) * 2;
-  });
-
-  const animateField = () => {
-    currentX += (targetX - currentX) * 0.08;
-    currentY += (targetY - currentY) * 0.08;
-    document.documentElement.style.setProperty('--field-x', currentX.toFixed(3));
-    document.documentElement.style.setProperty('--field-y', currentY.toFixed(3));
-    requestAnimationFrame(animateField);
-  };
-
-  animateField();
 };
 
-createInteractiveBackground();
+storySteps.forEach((step) => {
+  step.addEventListener('click', () => setStoryStep(Number(step.dataset.storyStep || 0)));
+});
+
+if (storySteps.length) {
+  const storyObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      const index = Number(entry.target.dataset.storyStep || 0);
+      setStoryStep(index);
+    });
+  }, { threshold: 0.7 });
+
+  storySteps.forEach((step) => storyObserver.observe(step));
+}
+
